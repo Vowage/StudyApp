@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Signal Deck</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+<style>
+  :root{
+    --bg:#0A0D12;
+    --bg-elev:#12161F;
+    --bg-elev2:#191F2C;
+    --text:#E9E7E0;
+    --text-dim:#8A93A6;
+    --text-faint:#565E70;
+    --line:#232838;
+    --wireless:#6FB7FF;
+    --wireless-dim:#25405C;
+    --hacking:#5CFFB0;
+    --hacking-dim:#1E4536;
+    --physics:#FF8A65;
+    --physics-dim:#4A2A22;
+    --danger:#FF6B6B;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+  html,body{height:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--font-sans);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    overflow-x:hidden;
+    -webkit-user-select:none; user-select:none;
+  }
+  #app{max-width:520px; margin:0 auto; min-height:100vh; display:flex; flex-direction:column;}
+
+  /* ---------- waveform header ---------- */
+  .wave-wrap{position:relative; height:64px; border-bottom:1px solid var(--line); background:var(--bg-elev);}
+  canvas#wave{width:100%; height:100%; display:block;}
+  .topbar{display:flex; align-items:center; justify-content:space-between; padding:14px 18px 10px;}
+  .brand{font-family:var(--font-mono); font-size:13px; letter-spacing:.18em; color:var(--text-dim); text-transform:uppercase;}
+  .brand b{color:var(--text);}
+  .streak{font-family:var(--font-mono); font-size:12px; color:var(--text-dim); display:flex; align-items:center; gap:5px;}
+  .streak b{color:var(--hacking); font-size:14px;}
+
+  /* ---------- dashboard ---------- */
+  .content{flex:1; padding:6px 18px 100px;}
+  h1.page-title{font-family:var(--font-mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-faint); margin:22px 0 14px; font-weight:600;}
+
+  .channel{
+    display:flex; align-items:center; justify-content:space-between;
+    background:var(--bg-elev); border:1px solid var(--line); border-radius:14px;
+    padding:16px 16px; margin-bottom:10px; position:relative; overflow:hidden;
+  }
+  .channel::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px;}
+  .channel.wireless::before{background:var(--wireless);}
+  .channel.hacking::before{background:var(--hacking);}
+  .channel.physics::before{background:var(--physics);}
+  .ch-left{display:flex; flex-direction:column; gap:3px;}
+  .ch-name{font-size:16px; font-weight:600;}
+  .ch-sub{font-family:var(--font-mono); font-size:11px; color:var(--text-faint); letter-spacing:.05em;}
+  .ch-count{font-family:var(--font-mono); font-size:22px; font-weight:700; text-align:right;}
+  .ch-count small{display:block; font-size:9px; font-weight:500; color:var(--text-faint); letter-spacing:.1em; text-transform:uppercase;}
+  .channel.wireless .ch-count{color:var(--wireless);}
+  .channel.hacking .ch-count{color:var(--hacking);}
+  .channel.physics .ch-count{color:var(--physics);}
+
+  .cta{
+    display:block; width:100%; margin-top:18px; padding:16px; border:none; border-radius:14px;
+    background:var(--text); color:var(--bg); font-family:var(--font-mono); font-size:14px;
+    font-weight:700; letter-spacing:.08em; text-transform:uppercase; text-align:center;
+  }
+  .cta:active{opacity:.8;}
+  .cta.ghost{background:transparent; color:var(--text-dim); border:1px solid var(--line);}
+  .cta.small{padding:11px; font-size:12px; margin-top:10px;}
+  .cta:disabled{opacity:.35;}
+
+  .stat-row{display:flex; gap:10px; margin-top:16px;}
+  .stat-box{flex:1; background:var(--bg-elev); border:1px solid var(--line); border-radius:12px; padding:12px; text-align:center;}
+  .stat-box .n{font-family:var(--font-mono); font-size:20px; font-weight:700;}
+  .stat-box .l{font-size:10px; color:var(--text-faint); letter-spacing:.08em; text-transform:uppercase; margin-top:2px;}
+
+  /* ---------- review ---------- */
+  .review-wrap{flex:1; display:flex; flex-direction:column; padding:18px;}
+  .progress-line{height:3px; background:var(--line); border-radius:2px; overflow:hidden; margin-bottom:20px;}
+  .progress-fill{height:100%; background:var(--hacking); transition:width .25s ease;}
+  .tag-pill{
+    display:inline-flex; align-self:flex-start; font-family:var(--font-mono); font-size:10px;
+    letter-spacing:.1em; text-transform:uppercase; padding:5px 10px; border-radius:20px; margin-bottom:16px;
+  }
+  .tag-pill.wireless{background:var(--wireless-dim); color:var(--wireless);}
+  .tag-pill.hacking{background:var(--hacking-dim); color:var(--hacking);}
+  .tag-pill.physics{background:var(--physics-dim); color:var(--physics);}
+
+  .card{
+    flex:1; background:var(--bg-elev); border:1px solid var(--line); border-radius:20px;
+    padding:26px 22px; display:flex; flex-direction:column; justify-content:center; min-height:260px;
+    position:relative;
+  }
+  .card-label{font-family:var(--font-mono); font-size:10px; color:var(--text-faint); letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px;}
+  .card-text{font-size:19px; line-height:1.5; font-weight:500;}
+  .card-answer{margin-top:18px; padding-top:18px; border-top:1px dashed var(--line); font-size:17px; line-height:1.55; color:var(--text-dim);}
+  .tap-hint{position:absolute; bottom:14px; left:0; right:0; text-align:center; font-family:var(--font-mono); font-size:10px; color:var(--text-faint); letter-spacing:.1em; text-transform:uppercase;}
+
+  .rate-row{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:16px;}
+  .rate-btn{
+    padding:14px 4px; border-radius:12px; border:1px solid var(--line); background:var(--bg-elev);
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--text);
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+  }
+  .rate-btn span.k{font-size:9px; color:var(--text-faint);}
+  .rate-btn.again{border-color:#4a2020; color:var(--danger);}
+  .rate-btn.hard{border-color:#4a3a20; color:#FFC96B;}
+  .rate-btn.good{border-color:var(--wireless-dim); color:var(--wireless);}
+  .rate-btn.easy{border-color:var(--hacking-dim); color:var(--hacking);}
+
+  .empty-state{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:40px 20px;}
+  .empty-state .big{font-size:40px; margin-bottom:10px;}
+  .empty-state p{color:var(--text-dim); font-size:14px; max-width:280px; line-height:1.5;}
+
+  /* ---------- manage ---------- */
+  .manage-tabs{display:flex; gap:8px; margin-bottom:16px; overflow-x:auto;}
+  .mtab{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    padding:8px 12px; border-radius:20px; border:1px solid var(--line); color:var(--text-dim); white-space:nowrap;
+  }
+  .mtab.active{color:var(--bg); font-weight:700;}
+  .mtab.active.wireless{background:var(--wireless);}
+  .mtab.active.hacking{background:var(--hacking);}
+  .mtab.active.physics{background:var(--physics);}
+
+  .card-row{background:var(--bg-elev); border:1px solid var(--line); border-radius:12px; padding:13px 14px; margin-bottom:8px;}
+  .card-row .q{font-size:14px; font-weight:600; margin-bottom:4px;}
+  .card-row .a{font-size:13px; color:var(--text-dim); line-height:1.4;}
+  .card-row .meta{display:flex; justify-content:space-between; align-items:center; margin-top:8px;}
+  .card-row .due{font-family:var(--font-mono); font-size:10px; color:var(--text-faint);}
+  .del-btn{font-family:var(--font-mono); font-size:10px; color:var(--danger); background:none; border:none; padding:4px 8px;}
+
+  .form{background:var(--bg-elev); border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:16px;}
+  .form label{display:block; font-family:var(--font-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint); margin-bottom:6px;}
+  .form textarea, .form select{
+    width:100%; background:var(--bg-elev2); border:1px solid var(--line); border-radius:10px; color:var(--text);
+    padding:10px 12px; font-size:14px; font-family:var(--font-sans); margin-bottom:12px; resize:vertical;
+  }
+  .form textarea{min-height:52px;}
+
+  /* ---------- import / extract ---------- */
+  .import-section{background:var(--bg-elev); border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:16px;}
+  .import-section h2{font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--text); margin:0 0 4px;}
+  .import-section .hint{font-size:12px; color:var(--text-dim); line-height:1.5; margin-bottom:12px;}
+  .file-input-wrap{position:relative; margin-bottom:10px;}
+  .file-input-wrap input[type=file]{
+    width:100%; padding:12px; background:var(--bg-elev2); border:1px dashed var(--line); border-radius:10px;
+    color:var(--text-dim); font-size:12px; font-family:var(--font-sans);
+  }
+  .import-section textarea{
+    width:100%; background:var(--bg-elev2); border:1px solid var(--line); border-radius:10px; color:var(--text);
+    padding:10px 12px; font-size:12px; font-family:var(--font-mono); margin-bottom:10px; resize:vertical; min-height:100px;
+    line-height:1.5;
+  }
+  .import-section select{
+    width:100%; background:var(--bg-elev2); border:1px solid var(--line); border-radius:10px; color:var(--text);
+    padding:10px 12px; font-size:14px; font-family:var(--font-sans); margin-bottom:10px;
+  }
+  .btn-row{display:flex; gap:8px;}
+  .btn-row .cta{margin-top:0;}
+  .format-example{
+    background:var(--bg-elev2); border:1px solid var(--line); border-radius:10px; padding:10px 12px;
+    font-family:var(--font-mono); font-size:11px; color:var(--text-faint); line-height:1.6; margin-bottom:10px; white-space:pre-wrap;
+  }
+  .status-msg{font-size:12px; color:var(--hacking); margin-top:8px; font-family:var(--font-mono);}
+  .status-msg.err{color:var(--danger);}
+  details.import-collapse{margin-bottom:16px;}
+  details.import-collapse summary{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-dim);
+    padding:4px 0; cursor:pointer;
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed; bottom:0; left:0; right:0; background:rgba(10,13,18,.92); backdrop-filter:blur(10px);
+    border-top:1px solid var(--line); display:flex; padding-bottom:env(safe-area-inset-bottom);
+    max-width:520px; margin:0 auto;
+  }
+  nav button{
+    flex:1; background:none; border:none; color:var(--text-faint); font-family:var(--font-mono);
+    font-size:10px; letter-spacing:.08em; text-transform:uppercase; padding:12px 4px 10px; display:flex;
+    flex-direction:column; align-items:center; gap:5px;
+  }
+  nav button.active{color:var(--text);}
+  nav .dot{width:5px; height:5px; border-radius:50%; background:transparent;}
+  nav button.active .dot{background:var(--hacking);}
+  .hidden{display:none !important;}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="wave-wrap"><canvas id="wave"></canvas></div>
+  <div class="topbar">
+    <div class="brand"><b>SIGNAL</b> DECK</div>
+    <div class="streak">🔥 <b id="streakNum">0</b> day streak</div>
+  </div>
+
+  <div class="content" id="content"></div>
+
+  <nav>
+    <button data-view="dashboard"><span>◆</span><span class="dot"></span>Deck</button>
+    <button data-view="review"><span>▶</span><span class="dot"></span>Decode</button>
+    <button data-view="manage"><span>≡</span><span class="dot"></span>Manage</button>
+  </nav>
+</div>
+
+<script>
+/* ============ SUBJECT CONFIG ============ */
+const SUBJECTS = {
+  wireless: {name:"Wireless Communication", short:"WCOM", color:"wireless"},
+  hacking:  {name:"Ethical Hacking & Pen Testing", short:"PTEST", color:"hacking"},
+  physics:  {name:"General Physics", short:"PHYS", color:"physics"}
+};
+
+// type: 'recall' = definition/fact card. 'problem' = scenario/calculation card
+// (front holds the problem, back holds the worked solution).
+const SEED_CARDS = [
+// -------- Wireless Communication --------
+["wireless","What does the Shannon-Hartley theorem state?","Channel capacity C = B·log2(1+S/N) — it caps the max error-free data rate for a given bandwidth B and signal-to-noise ratio."],
+["wireless","Difference between FDMA, TDMA, and CDMA?","FDMA splits users by frequency channel. TDMA splits by time slots on the same frequency. CDMA lets all users share frequency and time using unique spreading codes."],
+["wireless","What is multipath fading?","The signal reaches the receiver via multiple paths (reflection, diffraction, scattering), causing constructive/destructive interference and amplitude variation."],
+["wireless","How does free space path loss scale with distance and frequency?","It increases with the square of distance and the square of frequency: FSPL ∝ (4πdf/c)²."],
+["wireless","Difference between AM, FM, and PM?","AM varies the carrier's amplitude, FM varies its frequency, PM varies its phase — all to encode the message signal."],
+["wireless","What is QAM?","Quadrature Amplitude Modulation combines amplitude and phase modulation on two orthogonal carriers to pack more bits into each symbol."],
+["wireless","What is the Nyquist sampling rate?","The minimum sampling rate needed to avoid aliasing — twice the highest frequency component of the signal."],
+["wireless","What's the core idea behind OFDM?","Orthogonal Frequency Division Multiplexing splits data across many orthogonal narrowband subcarriers, making it resistant to multipath and inter-symbol interference."],
+["wireless","What causes Doppler shift in a wireless link?","Relative motion between transmitter and receiver shifts the frequency the receiver observes."],
+["wireless","Line-of-sight vs non-line-of-sight propagation?","LOS is a direct, unobstructed path. NLOS relies on reflection, diffraction, or scattering to reach the receiver."],
+["wireless","Why do cellular networks use frequency reuse patterns?","Coverage is divided into cells that reuse the same frequencies at a distance great enough to limit co-channel interference."],
+["wireless","What does MIMO give you?","Multiple-input multiple-output uses several antennas at transmitter/receiver to boost capacity (spatial multiplexing) or reliability (diversity)."],
+["wireless","Guided vs unguided transmission media?","Guided (wired) media confines the signal to a physical path. Unguided (wireless) media radiates the signal through free space."],
+["wireless","What is coherence bandwidth?","The range of frequencies over which the channel's response stays roughly flat/correlated — related to delay spread."],
+["wireless","What's the purpose of a link budget?","It totals all gains and losses from transmitter to receiver to check whether the received power meets the receiver's required sensitivity."],
+
+// -------- Ethical Hacking & Pen Testing --------
+["hacking","What are the standard phases of a penetration test?","Reconnaissance, Scanning/Enumeration, Gaining Access (Exploitation), Maintaining Access, Covering Tracks — followed by Reporting."],
+["hacking","Passive vs active reconnaissance?","Passive gathers info without touching the target (OSINT, WHOIS, DNS records). Active directly probes the target (port scans, banner grabbing)."],
+["hacking","What does an Nmap SYN scan (-sS) do?","It sends a TCP SYN and never completes the handshake — a stealthier 'half-open' scan than a full connect scan."],
+["hacking","What is the CIA triad?","Confidentiality, Integrity, Availability — the three core properties security controls aim to protect."],
+["hacking","What is privilege escalation?","Exploiting a bug or misconfiguration to gain higher-level access (vertical) or access to another same-level account (horizontal)."],
+["hacking","Vulnerability scan vs penetration test?","A vulnerability scan automatically flags potential weaknesses. A pentest actively exploits them to demonstrate real-world impact."],
+["hacking","What is a reverse shell?","A shell session initiated from the target back to the attacker's listener — often used to bypass inbound firewall restrictions."],
+["hacking","What is SQL injection?","Inserting malicious SQL through user input to manipulate or extract data from a backend database."],
+["hacking","What does a Rules of Engagement (RoE) document define?","The scope, authorized targets, timing, and boundaries of a pentest, keeping the testing legal and controlled."],
+["hacking","What is the OWASP Top 10?","A regularly updated list of the most critical web application security risks, e.g. injection and broken access control."],
+["hacking","What does Metasploit's msfconsole let you do?","Search, configure, and launch exploit modules and payloads against targets within one unified framework."],
+["hacking","What is a man-in-the-middle (MITM) attack?","The attacker secretly intercepts and relays communication between two parties who believe they're talking directly to each other."],
+["hacking","Black-box vs white-box vs gray-box testing?","Black-box: no internal knowledge. White-box: full knowledge (source/config). Gray-box: partial knowledge (e.g. user credentials)."],
+["hacking","What happens during the enumeration step?","Actively extracting detailed info from a target — usernames, shares, services, banners — to identify attack vectors."],
+["hacking","Why do pentesters document actions instead of covering tracks like a real attacker?","Real attackers erase logs to avoid detection; pentesters instead log everything so it can go in the client report."],
+
+// -------- General Physics --------
+["physics","State Newton's second law.","F = ma — net force equals mass times acceleration."],
+["physics","Kinematic equation relating final velocity, initial velocity, acceleration, and time?","v = v₀ + at"],
+["physics","What is work, in physics terms?","W = F·d·cos(θ) — force applied times displacement times the cosine of the angle between them."],
+["physics","State conservation of mechanical energy.","In an isolated system with only conservative forces acting, total mechanical energy (KE + PE) stays constant."],
+["physics","State Coulomb's law.","F = k·(q₁q₂)/r² — the force between two point charges is proportional to the product of the charges and inversely proportional to the square of the distance."],
+["physics","What is an electric field?","The force per unit positive test charge at a point in space: E = F/q."],
+["physics","State Ohm's law.","V = IR — voltage equals current times resistance."],
+["physics","Series vs parallel circuits?","Series: same current through all elements, voltages add. Parallel: same voltage across all branches, currents add."],
+["physics","Formula for centripetal acceleration?","a = v²/r, directed toward the center of the circular path."],
+["physics","State the impulse-momentum theorem.","Impulse (FΔt) equals the change in momentum: FΔt = Δp = mΔv."],
+["physics","State Faraday's law of induction.","A changing magnetic flux through a loop induces an EMF: EMF = −dΦ/dt."],
+["physics","When is angular momentum conserved?","When no external torque acts on the system, L = Iω stays constant."],
+["physics","What's the right-hand rule used for?","Finding the direction of a magnetic force, field, or induced current, e.g. in F = qv × B."],
+["physics","Elastic vs inelastic collisions?","Elastic collisions conserve both momentum and kinetic energy. Inelastic collisions conserve only momentum — kinetic energy is lost, often to heat or deformation."],
+["physics","Formula for gravitational potential energy near Earth's surface?","PE = mgh — mass times gravitational acceleration times height."]
+];
+
+/* ============ STATE ============ */
+let cards = [];
+let stats = {streak:0, lastActiveDate:null, reviewedTotal:0};
+let queue = [];
+let qIndex = 0;
+let revealed = false;
+let currentView = "dashboard";
+let manageSubject = "wireless";
+let manageCategoryFilter = "All";
+let selectedCats = new Set(); // "subject|category" keys, for dashboard multi-select study
+let storageReady = false;
+let reviewMode = "all"; // 'all' | 'category' | 'class'
+
+const $ = s => document.querySelector(s);
+const contentEl = $("#content");
+const todayStr = () => new Date().toISOString().slice(0,10);
+const uid = () => Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+
+/* ============ STORAGE ============
+   Uses localStorage so progress is saved on-device in Safari with no
+   account, login, or network connection required. */
+async function loadState(){
+  try{
+    const c = localStorage.getItem('sd_cards');
+    cards = c ? JSON.parse(c) : SEED_CARDS.map(([subject,front,back])=>newCard(subject,front,back));
+  }catch(e){
+    cards = SEED_CARDS.map(([subject,front,back])=>newCard(subject,front,back));
+  }
+  try{
+    const s = localStorage.getItem('sd_stats');
+    stats = s ? JSON.parse(s) : {streak:0,lastActiveDate:null,reviewedTotal:0};
+  }catch(e){
+    stats = {streak:0,lastActiveDate:null,reviewedTotal:0};
+  }
+  if(!cards.length){
+    cards = SEED_CARDS.map(([subject,front,back])=>newCard(subject,front,back));
+  }
+  // migrate any cards saved under the old "week" field to "category"
+  cards.forEach(c=>{ if(!c.category){ c.category = c.week || 'General'; } });
+  storageReady = true;
+  await saveCards();
+  await saveStats();
+}
+async function saveCards(){
+  try{ localStorage.setItem('sd_cards', JSON.stringify(cards)); }catch(e){}
+}
+async function saveStats(){
+  try{ localStorage.setItem('sd_stats', JSON.stringify(stats)); }catch(e){}
+}
+
+function newCard(subject, front, back, type, category){
+  return {
+    id: uid(), subject, front, back,
+    type: type || 'recall',
+    category: category || 'General',
+    reps:0, ef:2.5, interval:0,
+    due: Date.now() - 1000, // due immediately
+    created: Date.now()
+  };
+}
+
+function getCategories(subject){
+  const set = new Set();
+  cards.filter(c=>c.subject===subject).forEach(c=>set.add(c.category||'General'));
+  if(set.size===0) set.add('General');
+  return [...set].sort();
+}
+function getLastCategory(subject){
+  try{ return localStorage.getItem('sd_lastcat_'+subject) || 'General'; }catch(e){ return 'General'; }
+}
+function setLastCategory(subject, cat){
+  try{ localStorage.setItem('sd_lastcat_'+subject, cat); }catch(e){}
+}
+
+/* ============ SM-2 SCHEDULING ============ */
+function schedule(card, rating){
+  // rating: 0 again, 1 hard, 2 good, 3 easy
+  const qualityMap = [1, 3, 4, 5];
+  const q = qualityMap[rating];
+  if(q < 3){
+    card.reps = 0;
+    card.interval = 0; // requeue same session
+    card.due = Date.now() + 5*60*1000; // fallback 5 min if session ends
+  } else {
+    card.reps += 1;
+    if(card.reps === 1) card.interval = 1;
+    else if(card.reps === 2) card.interval = 6;
+    else card.interval = Math.round(card.interval * card.ef);
+    card.due = Date.now() + card.interval*24*60*60*1000;
+  }
+  card.ef = Math.max(1.3, card.ef + (0.1 - (5-q)*(0.08+(5-q)*0.02)));
+}
+
+function dueCards(){
+  return cards.filter(c => c.due <= Date.now());
+}
+
+function interleave(list){
+  const bySubject = {};
+  list.forEach(c=>{ (bySubject[c.subject] ||= []).push(c); });
+  Object.values(bySubject).forEach(arr=>arr.sort(()=>Math.random()-0.5));
+  const keys = Object.keys(bySubject);
+  const out = [];
+  let remaining = true;
+  while(remaining){
+    remaining = false;
+    for(const k of keys){
+      if(bySubject[k].length){
+        out.push(bySubject[k].shift());
+        remaining = true;
+      }
+    }
+  }
+  return out;
+}
+
+/* ============ STREAK ============ */
+function touchStreak(){
+  const t = todayStr();
+  if(stats.lastActiveDate === t) return;
+  const y = new Date(Date.now()-86400000).toISOString().slice(0,10);
+  stats.streak = (stats.lastActiveDate === y) ? stats.streak+1 : 1;
+  stats.lastActiveDate = t;
+  saveStats();
+}
+
+/* ============ WAVEFORM CANVAS ============ */
+const waveCanvas = $("#wave");
+const wctx = waveCanvas.getContext("2d");
+let waveMode = "idle";
+function resizeCanvas(){
+  const dpr = window.devicePixelRatio||1;
+  waveCanvas.width = waveCanvas.clientWidth*dpr;
+  waveCanvas.height = waveCanvas.clientHeight*dpr;
+  wctx.setTransform(dpr,0,0,dpr,0,0);
+}
+window.addEventListener('resize', resizeCanvas);
+
+const waveColors = {idle:"#3A4257", wireless:"#6FB7FF", hacking:"#5CFFB0", physics:"#FF8A65"};
+let t0 = performance.now();
+function drawWave(now){
+  const w = waveCanvas.clientWidth, h = waveCanvas.clientHeight;
+  wctx.clearRect(0,0,w,h);
+  const time = (now-t0)/1000;
+  const color = waveColors[waveMode] || waveColors.idle;
+  wctx.strokeStyle = color;
+  wctx.lineWidth = 1.6;
+  wctx.beginPath();
+  const midY = h/2;
+  for(let x=0; x<=w; x+=3){
+    let y;
+    if(waveMode === "hacking"){
+      // jagged terminal-noise
+      y = midY + (Math.sin(x*0.15+time*4)*6 + (Math.sin(x*0.9+time*9)>0.6? 10:0)*Math.sign(Math.sin(x*0.3)));
+    } else if(waveMode === "physics"){
+      // damped pendulum-like oscillation
+      const decay = Math.exp(-((x/w))*1.2);
+      y = midY + Math.sin(x*0.06 + time*3)*16*decay;
+    } else if(waveMode === "wireless"){
+      // smooth carrier wave
+      y = midY + Math.sin(x*0.09 + time*2.4)*14;
+    } else {
+      y = midY + Math.sin(x*0.05 + time*1)*6;
+    }
+    if(x===0) wctx.moveTo(x,y); else wctx.lineTo(x,y);
+  }
+  wctx.stroke();
+  requestAnimationFrame(drawWave);
+}
+
+/* ============ RENDER: DASHBOARD ============ */
+function renderDashboard(){
+  waveMode = "idle";
+  const bySubjectDue = {};
+  Object.keys(SUBJECTS).forEach(k=>bySubjectDue[k]=0);
+  dueCards().forEach(c=>bySubjectDue[c.subject]++);
+  const totalDue = dueCards().length;
+  const totalCards = cards.length;
+  const mastered = cards.filter(c=>c.reps>=3).length;
+  const selectedCount = cards.filter(c=>selectedCats.has(c.subject+'|'+c.category)).length;
+
+  contentEl.innerHTML = `
+    <h1 class="page-title">Study</h1>
+    <button class="cta ghost small" id="allBtn" ${totalDue===0?'disabled':''}>${totalDue>0 ? `Everything due (${totalDue})` : 'Everything — all caught up'}</button>
+
+    <details class="import-collapse" id="catDetails">
+      <summary>▸ Study by category</summary>
+      <div class="import-section">
+        <div class="hint">Pick any combination of categories, across any classes, to study together.</div>
+        ${Object.entries(SUBJECTS).map(([key,s])=>{
+          const cats = getCategories(key).filter(cat => cards.some(c=>c.subject===key && c.category===cat));
+          if(cats.length===0) return '';
+          return `
+            <div style="margin-bottom:10px;">
+              <div class="ch-sub" style="margin-bottom:6px;">${s.short}</div>
+              <div class="manage-tabs" style="flex-wrap:wrap;">
+                ${cats.map(cat=>{
+                  const k = key+'|'+cat;
+                  const n = cards.filter(c=>c.subject===key && c.category===cat).length;
+                  return `<button class="mtab ${selectedCats.has(k)?'active '+key:''}" data-catkey="${k}">${escapeHtml(cat)} (${n})</button>`;
+                }).join('')}
+              </div>
+            </div>`;
+        }).join('')}
+        <button class="cta small" id="studyCatBtn" ${selectedCount===0?'disabled':''}>Study selected (${selectedCount} cards)</button>
+      </div>
+    </details>
+
+    <h1 class="page-title">By Class — tap to study</h1>
+    ${Object.entries(SUBJECTS).map(([key,s])=>`
+      <div class="channel ${key}" data-subj="${key}" role="button">
+        <div class="ch-left">
+          <div class="ch-name">${s.name}</div>
+          <div class="ch-sub">${s.short} · ${cards.filter(c=>c.subject===key).length} cards on file</div>
+        </div>
+        <div class="ch-count">${bySubjectDue[key]}<small>due</small></div>
+      </div>
+    `).join('')}
+    <div class="stat-row">
+      <div class="stat-box"><div class="n">${totalCards}</div><div class="l">Total Cards</div></div>
+      <div class="stat-box"><div class="n">${mastered}</div><div class="l">Mastered</div></div>
+      <div class="stat-box"><div class="n">${stats.reviewedTotal}</div><div class="l">Reviews Logged</div></div>
+    </div>
+  `;
+  $("#allBtn")?.addEventListener('click', ()=>{ if(totalDue>0) startReview('all'); });
+  document.querySelectorAll('[data-catkey]').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const k = b.dataset.catkey;
+      if(selectedCats.has(k)) selectedCats.delete(k); else selectedCats.add(k);
+      renderDashboard();
+      $("#catDetails").open = true;
+    });
+  });
+  $("#studyCatBtn")?.addEventListener('click', ()=>{ if(selectedCount>0) startReview('category'); });
+  document.querySelectorAll('.channel').forEach(el=>{
+    el.addEventListener('click', ()=> startReview('class', el.dataset.subj));
+  });
+}
+
+/* ============ RENDER: REVIEW ============ */
+function startReview(mode, subjectFilter){
+  reviewMode = mode || 'all';
+  let pool;
+  if(reviewMode === 'category'){
+    pool = cards.filter(c => selectedCats.has(c.subject+'|'+c.category));
+  } else if(reviewMode === 'class'){
+    pool = dueCards().filter(c => c.subject === subjectFilter);
+    // if nothing's due yet in this class, let them study ahead instead of a dead end
+    if(pool.length === 0) pool = cards.filter(c => c.subject === subjectFilter).sort((a,b)=>a.due-b.due).slice(0,20);
+  } else {
+    pool = dueCards();
+  }
+  queue = interleave(pool);
+  qIndex = 0;
+  revealed = false;
+  setView('review');
+}
+
+function renderReview(){
+  if(qIndex >= queue.length){
+    waveMode = "idle";
+    contentEl.innerHTML = `
+      <div class="empty-state">
+        <div class="big">✓</div>
+        <p>Session complete. Nice work — spaced repetition only sticks if you come back tomorrow, so the streak matters more than any single session.</p>
+        <button class="cta small" id="backBtn">Back to deck</button>
+      </div>`;
+    queue = [];
+    $("#backBtn").addEventListener('click', ()=>setView('dashboard'));
+    return;
+  }
+  const card = queue[qIndex];
+  waveMode = card.subject;
+  const s = SUBJECTS[card.subject];
+  const pct = Math.round((qIndex/queue.length)*100);
+  const isProblem = card.type === 'problem';
+
+  contentEl.innerHTML = `
+    <div class="review-wrap" style="padding:0;">
+      <div class="progress-line"><div class="progress-fill" style="width:${pct}%; background:var(--${s.color})"></div></div>
+      <div class="tag-pill ${card.subject}">${s.short}${card.category && card.category!=='General' ? ' · '+escapeHtml(card.category) : ''} · ${qIndex+1}/${queue.length}</div>
+      <div class="card" id="cardEl">
+        <div class="card-label">${isProblem ? 'Problem / Scenario' : 'Recall'}</div>
+        <div class="card-text">${escapeHtml(card.front)}</div>
+        ${revealed ? `<div class="card-answer">${escapeHtml(card.back)}</div>` : `<div class="tap-hint">Tap card to reveal</div>`}
+      </div>
+      ${revealed ? `
+        <div class="rate-row">
+          <button class="rate-btn again" data-r="0">Again<span class="k">forgot</span></button>
+          <button class="rate-btn hard" data-r="1">Hard<span class="k">struggled</span></button>
+          <button class="rate-btn good" data-r="2">Good<span class="k">recalled</span></button>
+          <button class="rate-btn easy" data-r="3">Easy<span class="k">instant</span></button>
+        </div>
+      ` : ''}
+    </div>
+  `;
+  $("#cardEl").addEventListener('click', ()=>{
+    if(!revealed){ revealed = true; renderReview(); }
+  });
+  if(revealed){
+    document.querySelectorAll('.rate-btn').forEach(b=>{
+      b.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const rating = parseInt(b.dataset.r,10);
+        schedule(card, rating);
+        stats.reviewedTotal++;
+        touchStreak();
+        saveCards(); saveStats();
+        if(rating === 0){
+          // requeue near end for interleaved re-test
+          const reinsertAt = Math.min(queue.length, qIndex+3);
+          queue.splice(reinsertAt, 0, card);
+        }
+        qIndex++;
+        revealed = false;
+        renderReview();
+        renderStreakBadge();
+      });
+    });
+  }
+}
+
+/* ============ RENDER: MANAGE ============ */
+let newCardType = 'recall';
+
+function renderManage(){
+  waveMode = "idle";
+  const subjCards = cards.filter(c=>c.subject===manageSubject).sort((a,b)=>a.due-b.due);
+  const subjCats = getCategories(manageSubject);
+  const lastCat = getLastCategory(manageSubject);
+  const visibleCards = manageCategoryFilter==='All' ? subjCards : subjCards.filter(c=>c.category===manageCategoryFilter);
+  contentEl.innerHTML = `
+    <h1 class="page-title">Manage Cards</h1>
+
+    <details class="import-collapse">
+      <summary>▸ Turn class materials into cards</summary>
+      <div class="import-section">
+        <h2>1. Pull text from a file</h2>
+        <div class="hint">Upload a PDF, PPTX, or TXT of slides/notes/practice questions. This reads it right here on your phone — nothing is uploaded anywhere.</div>
+        <div class="file-input-wrap">
+          <input type="file" id="fileInput" accept=".pdf,.pptx,.txt,.md">
+        </div>
+        <div class="status-msg" id="extractStatus"></div>
+        <textarea id="extractedText" placeholder="Extracted text will appear here…"></textarea>
+        <div class="btn-row">
+          <button class="cta small ghost" id="copyExtractBtn" style="flex:1;">Copy text</button>
+        </div>
+      </div>
+      <div class="import-section">
+        <h2>2. Send it to Claude</h2>
+        <div class="hint">Opens Claude in a new tab with the material and the exact card format already filled in — just hit send.</div>
+        <button class="cta small" id="openClaudeBtn" style="width:100%;">Open Claude to generate cards →</button>
+        <div class="status-msg" id="claudeStatus"></div>
+      </div>
+      <div class="import-section">
+        <h2>3. Import cards Claude generated</h2>
+        <div class="hint">Copy Claude's reply and paste it below. Uses the category picked below. Format it produces:</div>
+        <div class="format-example">Q: question text
+A: answer text
+TYPE: recall
+---
+Q: a scenario or calculation
+A: worked solution
+TYPE: problem</div>
+        <textarea id="importText" placeholder="Paste Q: / A: formatted cards here…"></textarea>
+        <button class="cta small" id="importBtn">Import into ${SUBJECTS[manageSubject].short}</button>
+        <div class="status-msg" id="importStatus"></div>
+      </div>
+    </details>
+
+    <div class="manage-tabs">
+      ${Object.entries(SUBJECTS).map(([key,s])=>`
+        <button class="mtab ${key} ${manageSubject===key?'active '+key:''}" data-subj="${key}">${s.short}</button>
+      `).join('')}
+    </div>
+    <div class="form">
+      <label>Card type</label>
+      <div class="manage-tabs" style="margin-bottom:12px;">
+        <button class="mtab ${newCardType==='recall'?'active '+manageSubject:''}" data-type="recall">Recall</button>
+        <button class="mtab ${newCardType==='problem'?'active '+manageSubject:''}" data-type="problem">Problem / Scenario</button>
+      </div>
+      <label>Category</label>
+      <select id="categorySelect" style="width:100%; background:var(--bg-elev2); border:1px solid var(--line); border-radius:10px; color:var(--text); padding:10px 12px; font-size:14px; font-family:var(--font-sans); margin-bottom:8px;">
+        ${subjCats.map(cat=>`<option value="${escapeHtml(cat)}" ${cat===lastCat?'selected':''}>${escapeHtml(cat)}</option>`).join('')}
+        <option value="__new__">+ New category…</option>
+      </select>
+      <input type="text" id="newCategoryInput" class="hidden" placeholder="e.g. Chapter 1" style="width:100%; background:var(--bg-elev2); border:1px solid var(--line); border-radius:10px; color:var(--text); padding:10px 12px; font-size:14px; font-family:var(--font-sans); margin-bottom:12px;">
+      <label>${newCardType==='problem' ? 'Problem or scenario' : 'Question / prompt'}</label>
+      <textarea id="newFront" placeholder="${newCardType==='problem' ? 'e.g. A 2kg mass moving at 3 m/s collides inelastically with a 1kg mass at rest. Find the final velocity.' : 'e.g. What is the coherence bandwidth?'}"></textarea>
+      <label>${newCardType==='problem' ? 'Worked solution' : 'Answer'}</label>
+      <textarea id="newBack" placeholder="${newCardType==='problem' ? 'Walk through the steps, not just the final number' : 'Your notes, in your own words, recall best'}"></textarea>
+      <button class="cta small" id="addBtn">Add card to ${SUBJECTS[manageSubject].short}</button>
+    </div>
+
+    <div class="manage-tabs">
+      <button class="mtab ${manageCategoryFilter==='All'?'active '+manageSubject:''}" data-catfilter="All">All (${subjCards.length})</button>
+      ${subjCats.map(cat=>`<button class="mtab ${manageCategoryFilter===cat?'active '+manageSubject:''}" data-catfilter="${escapeHtml(cat)}">${escapeHtml(cat)} (${subjCards.filter(c=>c.category===cat).length})</button>`).join('')}
+    </div>
+    ${visibleCards.map(c=>`
+      <div class="card-row">
+        <div class="q">${escapeHtml(c.front)}</div>
+        <div class="a">${escapeHtml(c.back)}</div>
+        <div class="meta">
+          <div class="due">${c.type==='problem'?'problem · ':''}${escapeHtml(c.category)} · ${c.due<=Date.now() ? 'due now' : 'due '+new Date(c.due).toLocaleDateString()}</div>
+          <button class="del-btn" data-id="${c.id}">Delete</button>
+        </div>
+      </div>
+    `).join('') || `<div class="empty-state" style="padding:20px 0;"><p>No cards yet here — add your class notes above so you're practicing real recall, not just the starter deck.</p></div>`}
+  `;
+  document.querySelectorAll('.mtab[data-subj]').forEach(b=>b.addEventListener('click', ()=>{ manageSubject=b.dataset.subj; manageCategoryFilter='All'; renderManage(); }));
+  document.querySelectorAll('.mtab[data-type]').forEach(b=>b.addEventListener('click', ()=>{ newCardType=b.dataset.type; renderManage(); }));
+  document.querySelectorAll('.mtab[data-catfilter]').forEach(b=>b.addEventListener('click', ()=>{ manageCategoryFilter=b.dataset.catfilter; renderManage(); }));
+  $("#categorySelect")?.addEventListener('change', ()=>{
+    $("#newCategoryInput").classList.toggle('hidden', $("#categorySelect").value !== '__new__');
+    if($("#categorySelect").value === '__new__') $("#newCategoryInput").focus();
+  });
+
+  function resolveCategory(){
+    const sel = $("#categorySelect").value;
+    if(sel === '__new__'){
+      return ($("#newCategoryInput").value.trim()) || 'General';
+    }
+    return sel;
+  }
+
+  $("#addBtn").addEventListener('click', async ()=>{
+    const front = $("#newFront").value.trim();
+    const back = $("#newBack").value.trim();
+    if(!front || !back) return;
+    const category = resolveCategory();
+    setLastCategory(manageSubject, category);
+    cards.push(newCard(manageSubject, front, back, newCardType, category));
+    await saveCards();
+    manageCategoryFilter = category;
+    renderManage();
+  });
+  document.querySelectorAll('.del-btn').forEach(b=>b.addEventListener('click', async ()=>{
+    cards = cards.filter(c=>c.id!==b.dataset.id);
+    await saveCards();
+    renderManage();
+  }));
+
+  $("#fileInput")?.addEventListener('change', (e)=>{
+    const file = e.target.files[0];
+    if(file) handleFileExtract(file);
+  });
+  $("#copyExtractBtn")?.addEventListener('click', async ()=>{
+    const txt = $("#extractedText").value;
+    if(!txt) return;
+    try{
+      await navigator.clipboard.writeText(txt);
+      $("#extractStatus").textContent = 'Copied. Paste it to Claude in chat now.';
+      $("#extractStatus").classList.remove('err');
+    }catch(e){
+      $("#extractStatus").textContent = 'Could not copy automatically — tap and hold the text box to select and copy.';
+    }
+  });
+  $("#openClaudeBtn")?.addEventListener('click', ()=>{
+    const { url, copiedFallback } = buildClaudeLink();
+    const statusEl = $("#claudeStatus");
+    statusEl.classList.remove('err');
+    statusEl.textContent = copiedFallback
+      ? 'Material copied to your clipboard — paste it into the chat that opens.'
+      : 'Opening Claude with the material and format pre-filled…';
+    window.open(url, '_blank', 'noopener');
+  });
+  $("#importBtn")?.addEventListener('click', async ()=>{
+    const raw = $("#importText").value.trim();
+    const statusEl = $("#importStatus");
+    if(!raw){ statusEl.textContent = 'Paste some cards first.'; statusEl.classList.add('err'); return; }
+    const parsed = parseImportText(raw);
+    if(parsed.length === 0){
+      statusEl.textContent = "Couldn't find any Q:/A: pairs — check the format above.";
+      statusEl.classList.add('err');
+      return;
+    }
+    const category = resolveCategory();
+    setLastCategory(manageSubject, category);
+    parsed.forEach(p=>{
+      cards.push(newCard(manageSubject, p.front, p.back, p.type, category));
+    });
+    await saveCards();
+    statusEl.classList.remove('err');
+    statusEl.textContent = `Imported ${parsed.length} card${parsed.length===1?'':'s'} into ${SUBJECTS[manageSubject].short} · ${category}.`;
+    $("#importText").value = '';
+    manageCategoryFilter = category;
+    setTimeout(renderManage, 900);
+  });
+}
+
+/* Builds a claude.ai/new link pre-filled with the format instructions
+   (and the extracted material, when it's short enough to fit a URL). */
+function buildClaudeLink(){
+  const subj = SUBJECTS[manageSubject].name;
+  const catSelect = document.getElementById('categorySelect');
+  const category = catSelect ? (catSelect.value === '__new__' ? (document.getElementById('newCategoryInput')?.value.trim() || 'General') : catSelect.value) : 'General';
+  const text = ($("#extractedText")?.value || '').trim();
+  const header = `Turn the material below into study flashcards for my "${subj}" class, category "${category}". Reply using ONLY blocks in this exact format, no extra commentary, so I can import it directly:\n\nQ: question text\nA: answer text\nTYPE: recall\n---\nQ: a scenario or calculation question\nA: worked solution, not just the final number\nTYPE: problem\n---\n\nMix recall cards (definitions/facts) and problem cards (calculations/scenarios) where it fits the material. Here's the material:\n\n`;
+  const maxTotal = 4500; // keep the URL a safe length
+  let prompt, copiedFallback = false;
+  if(text && (header.length + text.length) <= maxTotal){
+    prompt = header + text;
+  } else if(text){
+    try{ navigator.clipboard.writeText(text); copiedFallback = true; }catch(e){}
+    prompt = header + (copiedFallback
+      ? '[Material was too long for this link — it\'s on your clipboard, paste it here.]'
+      : '[Paste your extracted material here.]');
+  } else {
+    prompt = header + '[Paste your extracted material here, or describe what you want cards on.]';
+  }
+  return { url: 'https://claude.ai/new?q=' + encodeURIComponent(prompt), copiedFallback };
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+/* ============ FILE TEXT EXTRACTION (client-side, no server) ============ */
+async function extractPdfText(file){
+  if(typeof pdfjsLib === 'undefined') throw new Error('PDF reader still loading — try again in a second.');
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const buf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data:buf}).promise;
+  let text = '';
+  for(let i=1;i<=pdf.numPages;i++){
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    const strings = content.items.map(it=>it.str);
+    text += `\n--- Page ${i} ---\n` + strings.join(' ') + '\n';
+  }
+  return text.trim();
+}
+
+async function extractPptxText(file){
+  if(typeof JSZip === 'undefined') throw new Error('Slide reader still loading — try again in a second.');
+  const buf = await file.arrayBuffer();
+  const zip = await JSZip.loadAsync(buf);
+  const slideFiles = Object.keys(zip.files)
+    .filter(n=>/^ppt\/slides\/slide\d+\.xml$/.test(n))
+    .sort((a,b)=>{
+      const na = parseInt(a.match(/slide(\d+)\.xml/)[1],10);
+      const nb = parseInt(b.match(/slide(\d+)\.xml/)[1],10);
+      return na-nb;
+    });
+  let text = '';
+  for(let i=0;i<slideFiles.length;i++){
+    const xml = await zip.files[slideFiles[i]].async('text');
+    const matches = [...xml.matchAll(/<a:t>([^<]*)<\/a:t>/g)].map(m=>m[1]);
+    text += `\n--- Slide ${i+1} ---\n` + matches.join(' ') + '\n';
+  }
+  return text.trim();
+}
+
+async function handleFileExtract(file){
+  const statusEl = $("#extractStatus");
+  const textEl = $("#extractedText");
+  statusEl.textContent = 'Reading file…';
+  statusEl.classList.remove('err');
+  try{
+    const ext = file.name.split('.').pop().toLowerCase();
+    let text;
+    if(ext === 'pdf') text = await extractPdfText(file);
+    else if(ext === 'pptx') text = await extractPptxText(file);
+    else if(ext === 'txt' || ext === 'md') text = await file.text();
+    else throw new Error('Use PDF, PPTX, or TXT — for .ppt or .doc, "Save As" a PDF first, then upload that.');
+    textEl.value = text || '(No text found — this file may be scanned images rather than real text.)';
+    statusEl.textContent = `Extracted ${text.length.toLocaleString()} characters. Copy it and paste to Claude in chat, then bring the generated cards back here.`;
+  }catch(e){
+    statusEl.textContent = e.message || 'Could not read that file.';
+    statusEl.classList.add('err');
+  }
+}
+
+/* Parses the simple Q: / A: / TYPE: / --- format Claude produces in chat */
+function parseImportText(raw){
+  const blocks = raw.split(/\n\s*-{3,}\s*\n/);
+  const out = [];
+  blocks.forEach(block=>{
+    const qMatch = block.match(/Q:\s*([\s\S]*?)(?=\n\s*A:|$)/i);
+    const aMatch = block.match(/A:\s*([\s\S]*?)(?=\n\s*TYPE:|$)/i);
+    const tMatch = block.match(/TYPE:\s*(recall|problem)/i);
+    const front = qMatch ? qMatch[1].trim() : '';
+    const back = aMatch ? aMatch[1].trim() : '';
+    if(front && back){
+      out.push({front, back, type: tMatch ? tMatch[1].toLowerCase() : 'recall'});
+    }
+  });
+  return out;
+}
+
+/* ============ NAV / VIEW SWITCH ============ */
+function setView(view){
+  currentView = view;
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active', b.dataset.view===view));
+  if(view==='dashboard') renderDashboard();
+  else if(view==='review'){
+    if(queue.length===0){
+      waveMode="idle";
+      contentEl.innerHTML = `<div class="empty-state"><div class="big">◆</div><p>Nothing queued up. Pick a mode from the Deck tab — "new this week," "everything due," or tap a class — to start a session.</p></div>`;
+    } else {
+      renderReview();
+    }
+  }
+  else if(view==='manage') renderManage();
+}
+
+function renderStreakBadge(){
+  $("#streakNum").textContent = stats.streak;
+}
+
+document.querySelectorAll('nav button').forEach(b=>{
+  b.addEventListener('click', ()=> setView(b.dataset.view));
+});
+
+/* ============ INIT ============ */
+(async function init(){
+  resizeCanvas();
+  requestAnimationFrame(drawWave);
+  contentEl.innerHTML = `<div class="empty-state"><p>Loading your deck…</p></div>`;
+  await loadState();
+  renderStreakBadge();
+  setView('dashboard');
+})();
+</script>
+</body>
+</html>
