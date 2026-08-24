@@ -925,10 +925,10 @@
       "back": "Mobility, easier and less expensive installation, increased reliability, and disaster recovery support.",
       "type": "recall",
       "week": "",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787154885237,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787681032201,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 22
+    "reviewedTotal": 23
   },
-  "updatedAt": 1787594623712
+  "updatedAt": 1787594634702
 }
