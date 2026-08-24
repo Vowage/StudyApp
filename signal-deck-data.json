@@ -911,10 +911,10 @@
       "back": "The power of digital devices to combine voice, video, and text-processing capabilities, plus connect to business/home networks and the Internet.",
       "type": "recall",
       "week": "",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787154885237,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787681054085,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 24
+    "reviewedTotal": 25
   },
-  "updatedAt": 1787594643577
+  "updatedAt": 1787594656585
 }
