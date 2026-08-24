@@ -2240,10 +2240,10 @@
       "back": "93.46 + 135.3 = 228.76 cm mathematically. The least precise term, 135.3 cm, has 1 decimal place, so the answer must be rounded to 1 decimal place: 228.8 cm.",
       "type": "problem",
       "category": "Chapter 2",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787592447176,
+      "reps": 1,
+      "ef": 2.6,
+      "interval": 1,
+      "due": 1787685105499,
       "created": 1787592448176
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 69
+    "reviewedTotal": 70
   },
-  "updatedAt": 1787598677006
+  "updatedAt": 1787598708000
 }
