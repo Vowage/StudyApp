@@ -813,10 +813,10 @@
       "back": "More flexible information such as web addresses, commands, or instructions; NFC-equipped smartphones/tablets can sometimes write to the tags.",
       "type": "recall",
       "week": "",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787154885237,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787678941643,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 9
+    "reviewedTotal": 10
   },
-  "updatedAt": 1787592536171
+  "updatedAt": 1787592544143
 }
