@@ -438,9 +438,9 @@
       "front": "State Ohm's law.",
       "back": "V = IR — voltage equals current times resistance.",
       "reps": 0,
-      "ef": 2.5,
+      "ef": 1.96,
       "interval": 0,
-      "due": 1787151821585,
+      "due": 1787598915348,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 63
+    "reviewedTotal": 64
   },
-  "updatedAt": 1787598610527
+  "updatedAt": 1787598617849
 }
