@@ -967,10 +967,10 @@
       "back": "Because network cable failures are one of the most common sources of network problems, so removing cables reduces that failure source.",
       "type": "recall",
       "week": "",
-      "reps": 0,
+      "reps": 1,
       "ef": 2.5,
-      "interval": 0,
-      "due": 1787154885237,
+      "interval": 1,
+      "due": 1787681008067,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 19
+    "reviewedTotal": 20
   },
-  "updatedAt": 1787594601016
+  "updatedAt": 1787594610568
 }
