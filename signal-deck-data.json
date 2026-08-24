@@ -1226,10 +1226,10 @@
       "back": "The Institute of Electrical and Electronic Engineers (IEEE); one of the latest standards provides data transmission speeds of over 1 Gigabit per second.",
       "type": "recall",
       "category": "Chapter 1",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787155970872,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787679175562,
       "created": 1787155971872
     },
     {
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 14
+    "reviewedTotal": 15
   },
-  "updatedAt": 1787592590758
+  "updatedAt": 1787592778064
 }
