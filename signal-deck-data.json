@@ -90,9 +90,9 @@
       "front": "What's the core idea behind OFDM?",
       "back": "Orthogonal Frequency Division Multiplexing splits data across many orthogonal narrowband subcarriers, making it resistant to multipath and inter-symbol interference.",
       "reps": 0,
-      "ef": 2.5,
+      "ef": 1.96,
       "interval": 0,
-      "due": 1787151821585,
+      "due": 1787593111799,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 16
+    "reviewedTotal": 17
   },
-  "updatedAt": 1787592806481
+  "updatedAt": 1787592814299
 }
