@@ -1343,10 +1343,10 @@
       "back": "It was developed to replace barcodes; its advantage is that information can be read from the tag regardless of whether it is visible.",
       "type": "recall",
       "category": "Chapter 1",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787155970872,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787681069547,
       "created": 1787155971872
     },
     {
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 25
+    "reviewedTotal": 26
   },
-  "updatedAt": 1787594656585
+  "updatedAt": 1787594672048
 }
