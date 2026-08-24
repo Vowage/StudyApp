@@ -2020,9 +2020,9 @@
       "type": "problem",
       "category": "Chapter 2",
       "reps": 0,
-      "ef": 2.5,
+      "ef": 1.96,
       "interval": 0,
-      "due": 1787592447176,
+      "due": 1787598857919,
       "created": 1787592448176
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 58
+    "reviewedTotal": 59
   },
-  "updatedAt": 1787598543423
+  "updatedAt": 1787598560422
 }
