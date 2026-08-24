@@ -2604,10 +2604,10 @@
       "back": "Match the 2-bit value to its assigned phase shift in DQPSK: '00'→0°, '01'→90°, '10'→180°, '11'→270°. So '10' corresponds to a 180° phase shift.",
       "type": "problem",
       "category": "Chapter 2",
-      "reps": 0,
-      "ef": 1.42,
-      "interval": 0,
-      "due": 1787598611437,
+      "reps": 1,
+      "ef": 1.3,
+      "interval": 1,
+      "due": 1787684779557,
       "created": 1787597902891
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 42
+    "reviewedTotal": 43
   },
-  "updatedAt": 1787598338422
+  "updatedAt": 1787598382060
 }
