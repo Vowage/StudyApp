@@ -1603,10 +1603,10 @@
       "back": "ZigBee devices don't transmit continuously — they turn off their transmitters for long periods and only wake up periodically to check the network's status. This duty-cycling (low activity, low data rate of 250 Kbps) is what allows the battery to last 2+ years, trading throughput for battery life compared to something like Wi-Fi.",
       "type": "problem",
       "category": "Chapter 1",
-      "reps": 0,
+      "reps": 1,
       "ef": 2.5,
-      "interval": 0,
-      "due": 1787155970872,
+      "interval": 1,
+      "due": 1787681082918,
       "created": 1787155971872
     },
     {
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 26
+    "reviewedTotal": 27
   },
-  "updatedAt": 1787594672048
+  "updatedAt": 1787594685418
 }
