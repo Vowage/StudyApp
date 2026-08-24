@@ -210,9 +210,9 @@
       "front": "What does an Nmap SYN scan (-sS) do?",
       "back": "It sends a TCP SYN and never completes the handshake — a stealthier 'half-open' scan than a full connect scan.",
       "reps": 0,
-      "ef": 2.5,
+      "ef": 1.96,
       "interval": 0,
-      "due": 1787151821585,
+      "due": 1787605399250,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 77
+    "reviewedTotal": 78
   },
-  "updatedAt": 1787605093412
+  "updatedAt": 1787605101751
 }
