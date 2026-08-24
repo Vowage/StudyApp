@@ -1421,10 +1421,10 @@
       "back": "Using a smartphone to create a Wi-Fi hotspot so a tablet or laptop can wirelessly connect to it and access the Internet through the cellular network.",
       "type": "recall",
       "category": "Chapter 1",
-      "reps": 0,
+      "reps": 1,
       "ef": 2.5,
-      "interval": 0,
-      "due": 1787155970872,
+      "interval": 1,
+      "due": 1787684735921,
       "created": 1787155971872
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 41
+    "reviewedTotal": 42
   },
-  "updatedAt": 1787598326618
+  "updatedAt": 1787598338422
 }
