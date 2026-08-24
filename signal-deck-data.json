@@ -1850,10 +1850,10 @@
       "back": "2 significant figures — in scientific notation, all digits in the coefficient (2.0) are significant.",
       "type": "problem",
       "category": "Chapter 1",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787592200714,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787685074505,
       "created": 1787592201714
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 68
+    "reviewedTotal": 69
   },
-  "updatedAt": 1787598666498
+  "updatedAt": 1787598677006
 }
