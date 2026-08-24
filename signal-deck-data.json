@@ -2487,10 +2487,10 @@
       "back": "Amplitude Modulation (AM), Frequency Modulation (FM), and Phase Modulation (PM).",
       "type": "recall",
       "category": "Chapter 2",
-      "reps": 0,
+      "reps": 1,
       "ef": 1.96,
-      "interval": 0,
-      "due": 1787598514061,
+      "interval": 1,
+      "due": 1787684643452,
       "created": 1787597902891
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 31
+    "reviewedTotal": 32
   },
-  "updatedAt": 1787598234396
+  "updatedAt": 1787598245953
 }
