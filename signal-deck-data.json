@@ -1107,10 +1107,10 @@
       "back": "Likely culprits in a break room include a microwave oven and possibly a cordless telephone (other common sources elsewhere in the building include elevator motors, heavy electrical equipment, outdoor lighting, and theft protection systems). The recommended solution is to locate the source of the interference and eliminate it (e.g., move the AP away from the microwave, reduce microwave use during heavy Wi-Fi use, or relocate/shield the interfering device).",
       "type": "problem",
       "week": "",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787154885237,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787679203980,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 15
+    "reviewedTotal": 16
   },
-  "updatedAt": 1787592778064
+  "updatedAt": 1787592806481
 }
