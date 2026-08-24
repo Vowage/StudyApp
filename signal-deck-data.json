@@ -1461,9 +1461,9 @@
       "type": "recall",
       "category": "Chapter 1",
       "reps": 0,
-      "ef": 2.5,
+      "ef": 1.96,
       "interval": 0,
-      "due": 1787155970872,
+      "due": 1787592818224,
       "created": 1787155971872
     },
     {
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 5
+    "reviewedTotal": 6
   },
-  "updatedAt": 1787592514972
+  "updatedAt": 1787592520725
 }
