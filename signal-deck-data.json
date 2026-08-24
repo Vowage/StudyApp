@@ -1538,10 +1538,10 @@
       "back": "Microwave ovens, elevator motors, heavy electrical equipment, outdoor lighting systems, theft protection systems, and cordless telephones.",
       "type": "recall",
       "category": "Chapter 1",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787155970872,
+      "reps": 1,
+      "ef": 2.6,
+      "interval": 1,
+      "due": 1787684704618,
       "created": 1787155971872
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 38
+    "reviewedTotal": 39
   },
-  "updatedAt": 1787598302429
+  "updatedAt": 1787598307119
 }
