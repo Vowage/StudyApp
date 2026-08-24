@@ -561,10 +561,10 @@
       "back": "The transmission of digital data without the use of wires.",
       "type": "recall",
       "week": "",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787154885237,
+      "reps": 1,
+      "ef": 2.6,
+      "interval": 1,
+      "due": 1787684631891,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 30
+    "reviewedTotal": 31
   },
-  "updatedAt": 1787598228855
+  "updatedAt": 1787598234396
 }
