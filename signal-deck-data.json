@@ -617,10 +617,10 @@
       "back": "A wireless access point (AP); it relays data signals among all the devices on the wired network.",
       "type": "recall",
       "week": "",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787154885237,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787678981219,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 12
+    "reviewedTotal": 13
   },
-  "updatedAt": 1787592562689
+  "updatedAt": 1787592583720
 }
