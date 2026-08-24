@@ -162,9 +162,9 @@
       "front": "What is coherence bandwidth?",
       "back": "The range of frequencies over which the channel's response stays roughly flat/correlated — related to delay spread.",
       "reps": 0,
-      "ef": 2.5,
+      "ef": 1.96,
       "interval": 0,
-      "due": 1787151821585,
+      "due": 1787592812471,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 4
+    "reviewedTotal": 5
   },
-  "updatedAt": 1787592507686
+  "updatedAt": 1787592514972
 }
