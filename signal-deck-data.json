@@ -534,9 +534,9 @@
       "front": "Formula for gravitational potential energy near Earth's surface?",
       "back": "PE = mgh — mass times gravitational acceleration times height.",
       "reps": 0,
-      "ef": 1.96,
+      "ef": 1.42,
       "interval": 0,
-      "due": 1787152169155,
+      "due": 1787598753337,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 47
+    "reviewedTotal": 48
   },
-  "updatedAt": 1787598449233
+  "updatedAt": 1787598455839
 }
