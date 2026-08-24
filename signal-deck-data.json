@@ -2552,10 +2552,10 @@
       "back": "FSK changes the frequency of the carrier signal to represent bits — more wave cycles are needed within the bit period to represent a 1 bit than a 0 bit.",
       "type": "recall",
       "category": "Chapter 2",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787597901891,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787691748187,
       "created": 1787597902891
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 79
+    "reviewedTotal": 80
   },
-  "updatedAt": 1787605110515
+  "updatedAt": 1787605350690
 }
