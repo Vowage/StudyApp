@@ -2175,10 +2175,10 @@
       "back": "The result should have the same number of decimal places as the term with the fewest decimal places among those being added or subtracted.",
       "type": "recall",
       "category": "Chapter 2",
-      "reps": 0,
+      "reps": 1,
       "ef": 2.5,
-      "interval": 0,
-      "due": 1787592447176,
+      "interval": 1,
+      "due": 1787684830468,
       "created": 1787592448176
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 45
+    "reviewedTotal": 46
   },
-  "updatedAt": 1787598403158
+  "updatedAt": 1787598432972
 }
