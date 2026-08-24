@@ -673,10 +673,10 @@
       "back": "They're called radio modules; the link manager is software that identifies other Bluetooth devices, creates a link between them, and sends/receives digital data.",
       "type": "recall",
       "week": "",
-      "reps": 0,
-      "ef": 1.96,
-      "interval": 0,
-      "due": 1787594913454,
+      "reps": 1,
+      "ef": 1.82,
+      "interval": 1,
+      "due": 1787681041076,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 23
+    "reviewedTotal": 24
   },
-  "updatedAt": 1787594634702
+  "updatedAt": 1787594643577
 }
