@@ -953,10 +953,10 @@
       "back": "Installing network cabling in older buildings is difficult, slow, and costly, and can take days or weeks — especially expensive where labor costs are high.",
       "type": "recall",
       "week": "",
-      "reps": 0,
+      "reps": 1,
       "ef": 2.5,
-      "interval": 0,
-      "due": 1787154885237,
+      "interval": 1,
+      "due": 1787684626354,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 29
+    "reviewedTotal": 30
   },
-  "updatedAt": 1787598216564
+  "updatedAt": 1787598228855
 }
