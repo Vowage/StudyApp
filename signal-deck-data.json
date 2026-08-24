@@ -674,9 +674,9 @@
       "type": "recall",
       "week": "",
       "reps": 0,
-      "ef": 2.5,
+      "ef": 1.96,
       "interval": 0,
-      "due": 1787154885237,
+      "due": 1787594913454,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2250,7 +2250,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 20
+    "reviewedTotal": 21
   },
-  "updatedAt": 1787594610568
+  "updatedAt": 1787594615955
 }
