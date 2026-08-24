@@ -1837,10 +1837,10 @@
       "back": "2 significant figures — the leading zeros before the \"2\" are not significant (they just locate the decimal point), but the zero after the 2 is after the decimal and follows a significant figure, so it counts. Only \"2\" and the trailing \"0\" count.",
       "type": "problem",
       "category": "Chapter 1",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787592200714,
+      "reps": 1,
+      "ef": 2.6,
+      "interval": 1,
+      "due": 1787685063997,
       "created": 1787592201714
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 67
+    "reviewedTotal": 68
   },
-  "updatedAt": 1787598661061
+  "updatedAt": 1787598666498
 }
