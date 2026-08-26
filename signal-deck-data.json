@@ -1278,10 +1278,10 @@
       "back": "A technology that uses Bluetooth, commonly used to deliver coupons and direct customers to sale items while shopping.",
       "type": "recall",
       "category": "Chapter 1",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787155970872,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787834639216,
       "created": 1787155971872
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-26",
-    "reviewedTotal": 89
+    "reviewedTotal": 90
   },
-  "updatedAt": 1787748232944
+  "updatedAt": 1787748241718
 }
