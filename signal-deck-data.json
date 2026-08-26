@@ -1798,10 +1798,10 @@
       "back": "3 significant figures — all non-zero digits are significant (rule 1).",
       "type": "problem",
       "category": "Chapter 1",
-      "reps": 1,
-      "ef": 2.6,
-      "interval": 1,
-      "due": 1787685114703,
+      "reps": 2,
+      "ef": 2.7,
+      "interval": 6,
+      "due": 1788266630442,
       "created": 1787592201714
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-26",
-    "reviewedTotal": 88
+    "reviewedTotal": 89
   },
-  "updatedAt": 1787748229676
+  "updatedAt": 1787748232944
 }
