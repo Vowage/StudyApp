@@ -185,10 +185,10 @@
       "subject": "hacking",
       "front": "What are the standard phases of a penetration test?",
       "back": "Reconnaissance, Scanning/Enumeration, Gaining Access (Exploitation), Maintaining Access, Covering Tracks — followed by Reporting.",
-      "reps": 0,
-      "ef": 1.96,
-      "interval": 0,
-      "due": 1787748492313,
+      "reps": 1,
+      "ef": 1.82,
+      "interval": 1,
+      "due": 1787834627175,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-26",
-    "reviewedTotal": 87
+    "reviewedTotal": 88
   },
-  "updatedAt": 1787748216797
+  "updatedAt": 1787748229676
 }
