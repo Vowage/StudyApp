@@ -2721,17 +2721,17 @@
       "back": "A modem (Modulator/Demodulator) converts distinct digital signals from a computer and encodes them into a continuous analog signal for transmission over analog phone lines. This encoding process is called modulation.",
       "type": "recall",
       "category": "Chapter 2",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787597901891,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787834548263,
       "created": 1787597902891
     }
   ],
   "stats": {
     "streak": 1,
-    "lastActiveDate": "2026-08-24",
-    "reviewedTotal": 80
+    "lastActiveDate": "2026-08-26",
+    "reviewedTotal": 81
   },
-  "updatedAt": 1787605350690
+  "updatedAt": 1787748150767
 }
