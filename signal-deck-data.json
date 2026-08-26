@@ -486,9 +486,9 @@
       "front": "State Faraday's law of induction.",
       "back": "A changing magnetic flux through a loop induces an EMF: EMF = −dΦ/dt.",
       "reps": 0,
-      "ef": 2.5,
+      "ef": 1.96,
       "interval": 0,
-      "due": 1787151821585,
+      "due": 1787748465677,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-26",
-    "reviewedTotal": 82
+    "reviewedTotal": 83
   },
-  "updatedAt": 1787748160556
+  "updatedAt": 1787748168179
 }
