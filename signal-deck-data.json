@@ -329,10 +329,10 @@
       "subject": "hacking",
       "front": "Black-box vs white-box vs gray-box testing?",
       "back": "Black-box: no internal knowledge. White-box: full knowledge (source/config). Gray-box: partial knowledge (e.g. user credentials).",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787151821585,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1787834558054,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-26",
-    "reviewedTotal": 81
+    "reviewedTotal": 82
   },
-  "updatedAt": 1787748150767
+  "updatedAt": 1787748160556
 }
