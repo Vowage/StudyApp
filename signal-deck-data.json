@@ -2227,10 +2227,10 @@
       "back": "Multiply and divide the coefficients and powers of ten: (1.23 × 1.5 / 3.2) × 10^(-8+6-5) = 0.5766 × 10⁻⁷ = 5.766 × 10⁻⁸ m. The least precise value (1.5 × 10⁶, with 2 sig figs) limits the answer to 2 sig figs: 5.8 × 10⁻⁸ m.",
       "type": "problem",
       "category": "Chapter 2",
-      "reps": 1,
-      "ef": 2.36,
-      "interval": 1,
-      "due": 1787685050087,
+      "reps": 0,
+      "ef": 1.8199999999999998,
+      "interval": 0,
+      "due": 1787748553295,
       "created": 1787592448176
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-26",
-    "reviewedTotal": 91
+    "reviewedTotal": 92
   },
-  "updatedAt": 1787748249897
+  "updatedAt": 1787748255797
 }
