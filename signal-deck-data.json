@@ -2071,10 +2071,10 @@
       "back": "1. All non-zero digits are significant. 2. Zeros between other non-zero digits are significant. 3. Zeros after the decimal point that follow another significant figure are significant.",
       "type": "recall",
       "category": "Chapter 2",
-      "reps": 0,
+      "reps": 1,
       "ef": 2.5,
-      "interval": 0,
-      "due": 1787592447176,
+      "interval": 1,
+      "due": 1788028804850,
       "created": 1787592448176
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 133
+    "reviewedTotal": 134
   },
-  "updatedAt": 1787942390657
+  "updatedAt": 1787942407351
 }
