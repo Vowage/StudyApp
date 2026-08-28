@@ -6,9 +6,9 @@
       "front": "What does the Shannon-Hartley theorem state?",
       "back": "Channel capacity C = B·log2(1+S/N) — it caps the max error-free data rate for a given bandwidth B and signal-to-noise ratio.",
       "reps": 0,
-      "ef": 2.5,
+      "ef": 1.96,
       "interval": 0,
-      "due": 1787151821585,
+      "due": 1787952239422,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 162
+    "reviewedTotal": 163
   },
-  "updatedAt": 1787951926957
+  "updatedAt": 1787951941924
 }
