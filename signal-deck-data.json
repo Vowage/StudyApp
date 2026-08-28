@@ -161,10 +161,10 @@
       "subject": "wireless",
       "front": "What is coherence bandwidth?",
       "back": "The range of frequencies over which the channel's response stays roughly flat/correlated — related to delay spread.",
-      "reps": 1,
-      "ef": 1.42,
-      "interval": 1,
-      "due": 1787678950399,
+      "reps": 2,
+      "ef": 1.3,
+      "interval": 6,
+      "due": 1788477989391,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 171
+    "reviewedTotal": 172
   },
-  "updatedAt": 1787959585488
+  "updatedAt": 1787959591892
 }
