@@ -41,10 +41,10 @@
       "subject": "wireless",
       "front": "How does free space path loss scale with distance and frequency?",
       "back": "It increases with the square of distance and the square of frequency: FSPL ∝ (4πdf/c)².",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787151821585,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1788028838274,
       "created": 1787151822585,
       "category": "General"
     },
@@ -173,10 +173,10 @@
       "subject": "wireless",
       "front": "What's the purpose of a link budget?",
       "back": "It totals all gains and losses from transmitter to receiver to check whether the received power meets the receiver's required sensitivity.",
-      "reps": 0,
+      "reps": 1,
       "ef": 1.96,
-      "interval": 0,
-      "due": 1787942678164,
+      "interval": 1,
+      "due": 1788028817809,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 134
+    "reviewedTotal": 136
   },
-  "updatedAt": 1787942407351
+  "updatedAt": 1787942440775
 }
