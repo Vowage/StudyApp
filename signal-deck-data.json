@@ -2474,10 +2474,10 @@
       "back": "The range of frequencies that can be transmitted by a system or medium; it refers to the maximum data transmission capacity, and is accurate mainly when referring to purely digital systems.",
       "type": "recall",
       "category": "Chapter 2",
-      "reps": 1,
+      "reps": 2,
       "ef": 2.6,
-      "interval": 1,
-      "due": 1787691423149,
+      "interval": 6,
+      "due": 1788470318401,
       "created": 1787597902891
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 159
+    "reviewedTotal": 160
   },
-  "updatedAt": 1787942846111
+  "updatedAt": 1787951920904
 }
