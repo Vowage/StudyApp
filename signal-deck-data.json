@@ -281,10 +281,10 @@
       "subject": "hacking",
       "front": "What does a Rules of Engagement (RoE) document define?",
       "back": "The scope, authorized targets, timing, and boundaries of a pentest, keeping the testing legal and controlled.",
-      "reps": 1,
-      "ef": 2.6,
-      "interval": 1,
-      "due": 1787691431400,
+      "reps": 2,
+      "ef": 2.7,
+      "interval": 6,
+      "due": 1788461060394,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 157
+    "reviewedTotal": 158
   },
-  "updatedAt": 1787942657708
+  "updatedAt": 1787942662895
 }
