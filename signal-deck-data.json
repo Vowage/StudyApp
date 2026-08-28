@@ -341,10 +341,10 @@
       "subject": "hacking",
       "front": "What happens during the enumeration step?",
       "back": "Actively extracting detailed info from a target — usernames, shares, services, banners — to identify attack vectors.",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787151821585,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1788027918466,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 104
+    "reviewedTotal": 105
   },
-  "updatedAt": 1787941513675
+  "updatedAt": 1787941520967
 }
