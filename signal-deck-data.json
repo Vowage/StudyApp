@@ -366,9 +366,9 @@
       "front": "State Newton's second law.",
       "back": "F = ma — net force equals mass times acceleration.",
       "reps": 0,
-      "ef": 2.5,
+      "ef": 1.96,
       "interval": 0,
-      "due": 1787151821585,
+      "due": 1787959870410,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 167
+    "reviewedTotal": 168
   },
-  "updatedAt": 1787959568365
+  "updatedAt": 1787959572911
 }
