@@ -269,10 +269,10 @@
       "subject": "hacking",
       "front": "What is SQL injection?",
       "back": "Inserting malicious SQL through user input to manipulate or extract data from a backend database.",
-      "reps": 1,
-      "ef": 2.5,
-      "interval": 1,
-      "due": 1787238258432,
+      "reps": 2,
+      "ef": 2.6,
+      "interval": 6,
+      "due": 1788460888397,
       "created": 1787151822585,
       "category": "General"
     },
@@ -1538,10 +1538,10 @@
       "back": "Microwave ovens, elevator motors, heavy electrical equipment, outdoor lighting systems, theft protection systems, and cordless telephones.",
       "type": "recall",
       "category": "Chapter 1",
-      "reps": 1,
-      "ef": 2.6,
-      "interval": 1,
-      "due": 1787684704618,
+      "reps": 2,
+      "ef": 2.46,
+      "interval": 6,
+      "due": 1788460886397,
       "created": 1787155971872
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 141
+    "reviewedTotal": 143
   },
-  "updatedAt": 1787942477824
+  "updatedAt": 1787942490898
 }
