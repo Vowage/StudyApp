@@ -197,10 +197,10 @@
       "subject": "hacking",
       "front": "Passive vs active reconnaissance?",
       "back": "Passive gathers info without touching the target (OSINT, WHOIS, DNS records). Active directly probes the target (port scans, banner grabbing).",
-      "reps": 0,
+      "reps": 1,
       "ef": 2.5,
-      "interval": 0,
-      "due": 1787151821585,
+      "interval": 1,
+      "due": 1788029027819,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 154
+    "reviewedTotal": 155
   },
-  "updatedAt": 1787942618160
+  "updatedAt": 1787942630322
 }
