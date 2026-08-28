@@ -2669,10 +2669,10 @@
       "back": "Divide 1 second by the hop rate: 1 second / 1,600 hops = 0.000625 seconds, or 625 microseconds (µs) per hop — matching the \"once every 625µs\" figure given for Bluetooth.",
       "type": "problem",
       "category": "Chapter 2",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787597901891,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1788028971407,
       "created": 1787597902891
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 150
+    "reviewedTotal": 151
   },
-  "updatedAt": 1787942551214
+  "updatedAt": 1787942573909
 }
