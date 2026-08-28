@@ -425,10 +425,10 @@
       "subject": "physics",
       "front": "What is an electric field?",
       "back": "The force per unit positive test charge at a point in space: E = F/q.",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787151821585,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1788038324456,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 161
+    "reviewedTotal": 162
   },
-  "updatedAt": 1787951923412
+  "updatedAt": 1787951926957
 }
