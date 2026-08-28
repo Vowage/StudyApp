@@ -1434,10 +1434,10 @@
       "back": "Microwave data equipment or WiMAX, deployed where wired Internet connectivity isn't available.",
       "type": "recall",
       "category": "Chapter 1",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787155970872,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1788029015659,
       "created": 1787155971872
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 153
+    "reviewedTotal": 154
   },
-  "updatedAt": 1787942606137
+  "updatedAt": 1787942618160
 }
