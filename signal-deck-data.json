@@ -2097,10 +2097,10 @@
       "back": "5 significant figures — the non-zero digits (3, 2, 5) count, and the zeros fall between non-zero digits, making them significant (rule 2).",
       "type": "problem",
       "category": "Chapter 2",
-      "reps": 1,
-      "ef": 2.6,
-      "interval": 1,
-      "due": 1787684936868,
+      "reps": 2,
+      "ef": 2.7,
+      "interval": 6,
+      "due": 1788477993927,
       "created": 1787592448176
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 172
+    "reviewedTotal": 173
   },
-  "updatedAt": 1787959591892
+  "updatedAt": 1787959596430
 }
