@@ -1967,10 +1967,10 @@
       "back": "Without units, it would be extremely difficult to express and compare measured values in a meaningful way. A famous example is NASA's Mars Climate Orbiter, lost due to a mix-up between metric and English units.",
       "type": "recall",
       "category": "Chapter 2",
-      "reps": 1,
-      "ef": 2.6,
-      "interval": 1,
-      "due": 1787691508012,
+      "reps": 2,
+      "ef": 2.7,
+      "interval": 6,
+      "due": 1788459841558,
       "created": 1787592448176
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 98
+    "reviewedTotal": 99
   },
-  "updatedAt": 1787941439905
+  "updatedAt": 1787941444059
 }
