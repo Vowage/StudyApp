@@ -353,10 +353,10 @@
       "subject": "hacking",
       "front": "Why do pentesters document actions instead of covering tracks like a real attacker?",
       "back": "Real attackers erase logs to avoid detection; pentesters instead log everything so it can go in the client report.",
-      "reps": 0,
+      "reps": 1,
       "ef": 2.5,
-      "interval": 0,
-      "due": 1787151821585,
+      "interval": 1,
+      "due": 1788038320910,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 160
+    "reviewedTotal": 161
   },
-  "updatedAt": 1787951920904
+  "updatedAt": 1787951923412
 }
