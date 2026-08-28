@@ -174,9 +174,9 @@
       "front": "What's the purpose of a link budget?",
       "back": "It totals all gains and losses from transmitter to receiver to check whether the received power meets the receiver's required sensitivity.",
       "reps": 0,
-      "ef": 2.5,
+      "ef": 1.96,
       "interval": 0,
-      "due": 1787151821585,
+      "due": 1787942678164,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 131
+    "reviewedTotal": 132
   },
-  "updatedAt": 1787941864075
+  "updatedAt": 1787942380666
 }
