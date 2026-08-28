@@ -245,10 +245,10 @@
       "subject": "hacking",
       "front": "Vulnerability scan vs penetration test?",
       "back": "A vulnerability scan automatically flags potential weaknesses. A pentest actively exploits them to demonstrate real-world impact.",
-      "reps": 0,
+      "reps": 1,
       "ef": 2.5,
-      "interval": 0,
-      "due": 1787151821585,
+      "interval": 1,
+      "due": 1788027837404,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 97
+    "reviewedTotal": 98
   },
-  "updatedAt": 1787941432068
+  "updatedAt": 1787941439905
 }
