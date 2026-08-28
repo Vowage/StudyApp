@@ -2435,10 +2435,10 @@
       "back": "Transmission speed is usually measured in bits per second (bps). Baud rate measures the number of signal changes (units) per second on the carrier; since one baud can represent more than one bit, bps and baud are not always equal.",
       "type": "recall",
       "category": "Chapter 2",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787597901891,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1788045965860,
       "created": 1787597902891
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 166
+    "reviewedTotal": 167
   },
-  "updatedAt": 1787951958650
+  "updatedAt": 1787959568365
 }
