@@ -799,10 +799,10 @@
       "back": "NFC works at an average distance of about 2 to 4 inches and has a transmission speed of approximately 250 Kbps, similar to but shorter-range than typical RFID.",
       "type": "recall",
       "week": "",
-      "reps": 0,
+      "reps": 1,
       "ef": 2.5,
-      "interval": 0,
-      "due": 1787154885237,
+      "interval": 1,
+      "due": 1788028937538,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-28",
-    "reviewedTotal": 147
+    "reviewedTotal": 148
   },
-  "updatedAt": 1787942523159
+  "updatedAt": 1787942540040
 }
