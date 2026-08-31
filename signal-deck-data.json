@@ -401,10 +401,10 @@
       "subject": "physics",
       "front": "State conservation of mechanical energy.",
       "back": "In an isolated system with only conservative forces acting, total mechanical energy (KE + PE) stays constant.",
-      "reps": 1,
-      "ef": 2.36,
-      "interval": 1,
-      "due": 1788028948711,
+      "reps": 2,
+      "ef": 2.2199999999999998,
+      "interval": 6,
+      "due": 1788718132702,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-31",
-    "reviewedTotal": 193
+    "reviewedTotal": 194
   },
-  "updatedAt": 1788199731385
+  "updatedAt": 1788199735203
 }
