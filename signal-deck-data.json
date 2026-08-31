@@ -2214,10 +2214,10 @@
       "back": "42 miles ÷ 26 mi/gal = 1.61538... gallons mathematically, but this implies unrealistic precision (e.g., the digit representing 0.00008 gal is about 1/3 of a drop of gas, far smaller than any real measurement could confirm). The answer should be limited to a realistic number of significant figures, e.g., 1.6 gallons (2 sig figs, matching the given data).",
       "type": "problem",
       "category": "Chapter 2",
-      "reps": 1,
-      "ef": 2.36,
-      "interval": 1,
-      "due": 1787685036760,
+      "reps": 2,
+      "ef": 2.46,
+      "interval": 6,
+      "due": 1788712546241,
       "created": 1787592448176
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-31",
-    "reviewedTotal": 184
+    "reviewedTotal": 185
   },
-  "updatedAt": 1788194139910
+  "updatedAt": 1788194148742
 }
