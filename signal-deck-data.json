@@ -2617,10 +2617,10 @@
       "back": "A transmission where the signal is sent on one radio frequency or a very narrow range of frequencies. Its main weakness is vulnerability to outside interference from another signal on or near that frequency.",
       "type": "recall",
       "category": "Chapter 2",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787597901891,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1788285268222,
       "created": 1787597902891
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-31",
-    "reviewedTotal": 185
+    "reviewedTotal": 186
   },
-  "updatedAt": 1788194148742
+  "updatedAt": 1788198870724
 }
