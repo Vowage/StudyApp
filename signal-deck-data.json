@@ -305,10 +305,10 @@
       "subject": "hacking",
       "front": "What does Metasploit's msfconsole let you do?",
       "back": "Search, configure, and launch exploit modules and payloads against targets within one unified framework.",
-      "reps": 1,
-      "ef": 2.5,
-      "interval": 1,
-      "due": 1788038344637,
+      "reps": 2,
+      "ef": 2.6,
+      "interval": 6,
+      "due": 1788718128884,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-31",
-    "reviewedTotal": 192
+    "reviewedTotal": 193
   },
-  "updatedAt": 1788199727699
+  "updatedAt": 1788199731385
 }
