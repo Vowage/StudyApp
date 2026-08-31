@@ -317,10 +317,10 @@
       "subject": "hacking",
       "front": "What is a man-in-the-middle (MITM) attack?",
       "back": "The attacker secretly intercepts and relays communication between two parties who believe they're talking directly to each other.",
-      "reps": 1,
-      "ef": 2.6,
-      "interval": 1,
-      "due": 1788028868466,
+      "reps": 2,
+      "ef": 2.7,
+      "interval": 6,
+      "due": 1788728019438,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-31",
-    "reviewedTotal": 201
+    "reviewedTotal": 202
   },
-  "updatedAt": 1788209619329
+  "updatedAt": 1788209621940
 }
