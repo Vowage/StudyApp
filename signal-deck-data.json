@@ -1577,10 +1577,10 @@
       "back": "Round-trip delay ≈ 2 × 250 ms = 500 ms (0.5 seconds). This matters because satellite links have inherently high latency compared to terrestrial links, which makes them poor for time-sensitive applications (e.g., voice calls, gaming) even though they're useful for long-distance or hard-to-wire locations.",
       "type": "problem",
       "category": "Chapter 1",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787155970872,
+      "reps": 1,
+      "ef": 2.6,
+      "interval": 1,
+      "due": 1788286144978,
       "created": 1787155971872
     },
     {
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-31",
-    "reviewedTotal": 194
+    "reviewedTotal": 195
   },
-  "updatedAt": 1788199735203
+  "updatedAt": 1788199747479
 }
