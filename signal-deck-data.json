@@ -293,10 +293,10 @@
       "subject": "hacking",
       "front": "What is the OWASP Top 10?",
       "back": "A regularly updated list of the most critical web application security risks, e.g. injection and broken access control.",
-      "reps": 1,
+      "reps": 2,
       "ef": 2.6,
-      "interval": 1,
-      "due": 1788028908013,
+      "interval": 6,
+      "due": 1788728050160,
       "created": 1787151822585,
       "category": "General"
     },
@@ -2731,7 +2731,7 @@
   "stats": {
     "streak": 1,
     "lastActiveDate": "2026-08-31",
-    "reviewedTotal": 205
+    "reviewedTotal": 206
   },
-  "updatedAt": 1788209645683
+  "updatedAt": 1788209652662
 }
