@@ -1037,10 +1037,10 @@
       "back": "Time = Data / Speed = 5 Gb ÷ 10 Gbps = 0.5 seconds. Because WiGig's high speeds only work over very short range (up to 2 meters) with few obstacles, this fast transfer is only realistic if the devices are close together in the same room.",
       "type": "problem",
       "week": "",
-      "reps": 0,
-      "ef": 2.5,
-      "interval": 0,
-      "due": 1787154885237,
+      "reps": 1,
+      "ef": 2.36,
+      "interval": 1,
+      "due": 1788440166068,
       "created": 1787154886237,
       "category": "General"
     },
@@ -2730,8 +2730,8 @@
   ],
   "stats": {
     "streak": 1,
-    "lastActiveDate": "2026-08-31",
-    "reviewedTotal": 207
+    "lastActiveDate": "2026-09-02",
+    "reviewedTotal": 208
   },
-  "updatedAt": 1788209657995
+  "updatedAt": 1788353768570
 }
